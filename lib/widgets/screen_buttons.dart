@@ -2,7 +2,9 @@ import 'package:batman_flutter_sign_in/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class ScreenButtons extends AnimatedWidget {
-  const ScreenButtons({super.key, required Animation animation})
+  final VoidCallback onTap;
+  const ScreenButtons(
+      {super.key, required Animation animation, required this.onTap})
       : super(listenable: animation);
   Animation get _animationButtonsIn => listenable as Animation;
 
@@ -22,7 +24,7 @@ class ScreenButtons extends AnimatedWidget {
               CustomButton(onTap: () {}, text: 'LOGIN'),
               const SizedBox(height: 35),
               CustomButton(
-                onTap: () {},
+                onTap: onTap,
                 text: 'SIGN-UP',
                 isLeft: true,
               ),
