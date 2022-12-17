@@ -1,6 +1,5 @@
-import 'dart:developer';
-
-import 'package:batman_flutter_sign_in/widgets/custom_button.dart';
+import 'package:batman_flutter_sign_in/widgets/screen_buttons.dart';
+import 'package:batman_flutter_sign_in/widgets/screen_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -92,7 +91,6 @@ class _BatmanLoginState extends State<BatmanLogin>
       child: AnimatedBuilder(
           animation: _animationController,
           builder: (context, _) {
-            log(_animationButtonsIn.value.toString());
             return Scaffold(
               backgroundColor: const Color(0xFF100F0B),
               body: Stack(
@@ -127,44 +125,12 @@ class _BatmanLoginState extends State<BatmanLogin>
                     right: 0,
                     child: Column(
                       children: [
-                        Opacity(
-                          opacity: _animationLogoMovementUp.value,
-                          child: Column(
-                            children: [
-                              Text(
-                                'Welcome to'.toUpperCase(),
-                                style: const TextStyle(
-                                    fontSize: 22, color: Colors.white),
-                              ),
-                              Text(
-                                'gotham city'.toUpperCase(),
-                                style: const TextStyle(
-                                    fontSize: 35, color: Colors.white),
-                              ),
-                            ],
-                          ),
+                        ScreenTitle(
+                          animation: _animationButtonsIn,
                         ),
                         const SizedBox(height: 35),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 30),
-                          child: Opacity(
-                            opacity: _animationButtonsIn.value,
-                            child: Transform.translate(
-                              offset: Offset(
-                                  0.0, 100 * (1 - _animationButtonsIn.value)),
-                              child: Column(
-                                children: [
-                                  CustomButton(onTap: () {}, text: 'LOGIN'),
-                                  const SizedBox(height: 35),
-                                  CustomButton(
-                                    onTap: () {},
-                                    text: 'SIGN-UP',
-                                    isLeft: true,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                        ScreenButtons(
+                          animation: _animationButtonsIn,
                         )
                       ],
                     ),
